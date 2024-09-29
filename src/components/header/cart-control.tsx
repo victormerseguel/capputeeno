@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { CartIcon } from "./cart-icon";
 
 const CartCount = styled.span`
@@ -27,7 +27,7 @@ export function CartControl() {
   return (
     <Container>
       <CartIcon />
-      {value.length && <CartCount>{value.length}</CartCount>}
+      {value && <CartCount>{value.length}</CartCount>}
     </Container>
   );
 }

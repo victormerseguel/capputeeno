@@ -1,13 +1,13 @@
 "use client";
-import { Fragment } from "react";
+import styled from "styled-components";
 import { ProductCard } from "./product-card";
 import { useProducts } from "../../hooks/useProducts";
-import styled from "styled-components";
-
-interface ProductListProps {}
+import { filterProductsByType } from "@/utils/filter-products";
+import { useContext } from "react";
+import { FilterContext } from "@/context/filter-context";
 
 const CardsWraper = styled.div`
-  margin-top: 80px;
+  margin-top: 32px;
   width: 100%;
 
   display: flex;
@@ -18,19 +18,25 @@ const CardsWraper = styled.div`
 
 export function ProductList() {
   const { data, loading } = useProducts("http://localhost:3333/");
+  const { type, priority, page } = useContext(FilterContext);
+  let filtered;
+
+  if (data) {
+    filtered = filterProductsByType(data, type, priority, page);
+  }
 
   return (
     <>
       {loading && <p>Carrgando...</p>}
       {data && (
         <CardsWraper>
-          {data.data.allProducts.map((card) => (
+          {filtered?.map((product) => (
             <ProductCard
-              image={card.image_url}
-              name={card.name}
-              price={card.price_in_cents}
-              id={card.id}
-              key={card.id}
+              image={product.image_url}
+              name={product.name}
+              price={product.price_in_cents}
+              id={product.id}
+              key={product.id}
             />
           ))}
         </CardsWraper>

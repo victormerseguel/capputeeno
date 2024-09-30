@@ -2,7 +2,6 @@
 import { createContext, ReactNode, useState } from "react";
 import { PriorityTypes } from "../types/priority-types";
 import { FilterType } from "../types/filter-types";
-import { setPriority } from "os";
 
 export const FilterContext = createContext({
   search: "",
@@ -21,7 +20,7 @@ interface ProviderProps {
 
 export function FilterContextProvider({ children }: ProviderProps) {
   const [search, setSearch] = useState("");
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(2);
   const [type, setType] = useState(FilterType.ALL);
   const [priority, setPriority] = useState(PriorityTypes.NEWS);
 

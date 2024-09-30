@@ -1,8 +1,8 @@
-import { Product } from "../types/products";
+import { Products } from "../types/products";
 import { useEffect, useState } from "react";
 
 export function useProducts(url: string) {
-  const [data, setData] = useState<Product>();
+  const [data, setData] = useState<Products>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -26,7 +26,7 @@ export function useProducts(url: string) {
                   }
               }`,
         }),
-        next: { revalidate: 10 },
+        next: { revalidate: 600 },
       })
         .then((res) => res.json())
         .then((data) => {

@@ -21,10 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={saira.className}
-        // style={{ maxWidth: "1440px", margin: "0 auto" }}
-      >
+      <body className={saira.className}>
         <FilterContextProvider>
           <Header />
           {children}

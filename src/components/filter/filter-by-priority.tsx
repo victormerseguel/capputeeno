@@ -10,6 +10,7 @@ const FilterContainerPriority = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  z-index: 2;
 
   button {
     border: none;

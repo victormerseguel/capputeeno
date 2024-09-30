@@ -1,5 +1,6 @@
 "use client";
-import { redirect, useRouter } from "next/navigation";
+import { formatPrice } from "../../utils/format-price";
+import { useRouter } from "next/navigation";
 import { styled } from "styled-components";
 
 interface ProductCardProps {
@@ -9,7 +10,7 @@ interface ProductCardProps {
   id: string;
 }
 
-const CardWraper = styled.button`
+const Card = styled.button`
   display: flex;
   flex-direction: column;
   width: 256px;
@@ -21,12 +22,13 @@ const CardWraper = styled.button`
   font-family: inherit;
 
   background-color: white;
-`;
+  backdrop-filter: blur(10px);
 
-const ProductImage = styled.img`
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
+  img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
 `;
 
 const CardLable = styled.div`
@@ -35,18 +37,18 @@ const CardLable = styled.div`
   font-family: inherit;
   text-align: start;
 
-  h4 {
-    color: #41414d;
+  h3 {
+    color: var(--text-dark2);
     font-size: 16px;
     font-weight: 300;
     margin: 0px 12px;
     padding: 8px 0px;
 
-    border-bottom: 1px solid #dce2e5;
+    border-bottom: 1px solid var(--shapes);
   }
 
   p {
-    color: #09090a;
+    color: var(--shapes-dark);
     font-size: 14px;
     font-weight: 600;
     padding: 8px 12px;
@@ -61,17 +63,12 @@ export function ProductCard({ image, name, price, id }: ProductCardProps) {
   };
 
   return (
-    <CardWraper onClick={() => handleProductCardClick(name)}>
-      <ProductImage src={image} alt={name} />
+    <Card onClick={() => handleProductCardClick(name)}>
+      <img src={image} alt={name} />
       <CardLable>
-        <h4>{name}</h4>
-        <p>
-          {(price / 100).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          })}
-        </p>
+        <h3>{name}</h3>
+        <p>{formatPrice(price)}</p>
       </CardLable>
-    </CardWraper>
+    </Card>
   );
 }

@@ -6,7 +6,7 @@ import { BackIcon } from "../../../components/product/back-icon";
 import { formatPrice } from "../../../utils/format-price";
 import { CartIcon } from "../../../components/header/cart-icon";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Product } from "../../../types/products";
+import { Product } from "../../../types/products-types";
 
 const ProductWraper = styled.div`
   width: 100%;
@@ -139,16 +139,16 @@ export default function Page() {
   };
 
   const filterCurrentProduct = (param: Product) => {
-    setCurrentProduct([
-      {
-        id: param.id,
-        name: param.name,
-        price_in_cents: param.price_in_cents,
-        description: param.description,
-        image_url: param.image_url,
-        category: param.category,
-      },
-    ]);
+    // setCurrentProduct([
+    //   {
+    //     id: param.id,
+    //     name: param.name,
+    //     price_in_cents: param.price_in_cents,
+    //     description: param.description,
+    //     image_url: param.image_url,
+    //     category: param.category,
+    //   },
+    // ]);
   };
 
   return (

@@ -2,10 +2,8 @@
 import styled from "styled-components";
 import { ProductCard } from "./product-card";
 import { useProducts } from "../../hooks/useProducts";
-import { filterProductsByType } from "@/utils/filter-products";
-import { useContext, useEffect } from "react";
-import { FilterContext } from "@/context/filter-context";
-import { Product, Products } from "@/types/products";
+import { useContext } from "react";
+import { FilterContext } from "../../context/filter-context";
 
 const CardsWraper = styled.div`
   margin-top: 32px;

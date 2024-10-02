@@ -4,8 +4,6 @@ import { FilterType } from "@/types/filter-types";
 import { useContext } from "react";
 import { styled } from "styled-components";
 
-interface FilterByTypeProps {}
-
 interface FilterItemProps {
   selected: boolean;
 }

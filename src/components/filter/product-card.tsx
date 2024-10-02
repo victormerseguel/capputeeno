@@ -4,7 +4,7 @@ import { formatPrice } from "../../utils/format-price";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { styled } from "styled-components";
-import { Product } from "@/types/products";
+import { Product } from "../../types/products-types";
 
 const Card = styled.button`
   display: flex;

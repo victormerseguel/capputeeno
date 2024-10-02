@@ -1,6 +1,6 @@
 "use client";
-import { FilterContext } from "@/context/filter-context";
-import { useContext, useEffect } from "react";
+import { FilterContext } from "../../context/filter-context";
+import { useContext } from "react";
 import styled from "styled-components";
 
 type NumberProps = {

@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, useContext } from "react";
 import { SearchIcon } from "./search-icon";
 import { styled } from "styled-components";
-import { FilterContext } from "@/context/filter-context";
+import { FilterContext } from "../../context/filter-context";
 
 export const PrimaryInput = styled.input`
   width: 352px;

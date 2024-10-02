@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FilterPageNumber } from "./filter-page-number";
 import { ArrowIcon } from "./arrow-icon";
 import { useContext } from "react";
-import { FilterContext } from "@/context/filter-context";
+import { FilterContext } from "../../context/filter-context";
 
 const PageWraper = styled.div`
   width: 100%;

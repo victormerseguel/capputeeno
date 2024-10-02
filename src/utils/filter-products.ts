@@ -1,5 +1,5 @@
 import { FilterType } from "@/types/filter-types";
-import { Product, Products } from "../types/products";
+import { Product, Products } from "../types/products-types";
 import { PriorityTypes } from "@/types/priority-types";
 
 export const filterProductsByType = (

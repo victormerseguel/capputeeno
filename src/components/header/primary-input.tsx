@@ -1,6 +1,7 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, useContext } from "react";
 import { SearchIcon } from "./search-icon";
 import { styled } from "styled-components";
+import { FilterContext } from "@/context/filter-context";
 
 export const PrimaryInput = styled.input`
   width: 352px;
@@ -32,9 +33,15 @@ const InputContainer = styled.div`
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
 export function PrimaryInputWSearchIcon(props: InputProps) {
+  const { search, setSearch } = useContext(FilterContext);
+
   return (
     <InputContainer>
-      <PrimaryInput {...props} />
+      <PrimaryInput
+        {...props}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
       <SearchIcon />
     </InputContainer>
   );

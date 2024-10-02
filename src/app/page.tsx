@@ -9,6 +9,7 @@ export default function Home() {
       <FilterBar />
       <FilterPage />
       <ProductList />
+      <FilterPage />
     </main>
   );
 }

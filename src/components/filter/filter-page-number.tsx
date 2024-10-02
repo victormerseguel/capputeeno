@@ -14,20 +14,18 @@ const Number = styled.li<NumberProps>`
   align-items: center;
   width: 32px;
   height: 32px;
-  border: ${(props) =>
-    props.selected ? "1px solid var(--orange-low)" : "none"};
   border-radius: 8px;
 
   font-family: inherit;
   font-size: 16px;
-  font-weight: ${(props) => (props.selected ? "600" : "400")};
   list-style: none;
-  background-color: ${(props) =>
-    props.selected ? "white" : "var(--shapes-medium)"};
-  color: ${(props) =>
-    props.selected ? "var(--orange-low)" : "var(--text-dark)"};
 
   cursor: pointer;
+
+  ${(props) =>
+    props.selected
+      ? "border: 1px solid var(--orange-low); font-weight: 600; background-color: white; color: var(--orange-low);"
+      : "border: none; font-weight: 400; background-color: var(--shapes-medium); color: var(--text-dark);"}
 
   > svg {
     transform: ${(props) =>
@@ -41,16 +39,17 @@ type FilterPageNumberProps = {
 };
 
 export function FilterPageNumber({ i, direction }: FilterPageNumberProps) {
-  const { page, setPage } = useContext(FilterContext);
+  const { page, setPage, dataLength } = useContext(FilterContext);
 
   const handlePageClick = () => {
     if (typeof i === "number") {
       setPage(i);
     } else if (direction === "right") {
-      setPage(page + 1);
+      page >= dataLength - 1 ? setPage(0) : setPage(page + 1);
     } else {
-      setPage(page - 1);
+      page <= 0 ? setPage(dataLength - 1) : setPage(page - 1);
     }
+    window.scroll(0, 0);
   };
 
   return (

@@ -15,16 +15,22 @@ const PageWraper = styled.div`
 `;
 
 export function FilterPage() {
-  const { pageLenght } = useContext(FilterContext);
+  const { dataLength } = useContext(FilterContext);
+  const pages = [];
+
+  for (let i = 0; i < dataLength; i++) {
+    pages.push(i);
+  }
 
   return (
     <PageWraper>
-      <FilterPageNumber i={0} />
-      <FilterPageNumber i={1} />
-      <FilterPageNumber i={2} />
-      <FilterPageNumber i={3} />
-      <FilterPageNumber i={4} />
-      <FilterPageNumber i={5} />
+      {dataLength && (
+        <>
+          {pages.map((page, i) => (
+            <FilterPageNumber i={page} key={i} />
+          ))}
+        </>
+      )}
       <FilterPageNumber i={<ArrowIcon />} direction="left" />
       <FilterPageNumber i={<ArrowIcon />} direction="right" />
     </PageWraper>

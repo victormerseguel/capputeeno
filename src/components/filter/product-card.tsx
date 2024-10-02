@@ -1,14 +1,10 @@
 "use client";
+import { FilterContext } from "@/context/filter-context";
 import { formatPrice } from "../../utils/format-price";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 import { styled } from "styled-components";
-
-interface ProductCardProps {
-  image: string;
-  name: string;
-  price: number;
-  id: string;
-}
+import { Product } from "@/types/products";
 
 const Card = styled.button`
   display: flex;
@@ -55,19 +51,31 @@ const CardLable = styled.div`
   }
 `;
 
-export function ProductCard({ image, name, price, id }: ProductCardProps) {
+export function ProductCard(props: Product) {
+  const { setCurrentProduct, currentProduct } = useContext(FilterContext);
   const router = useRouter();
 
   const handleProductCardClick = (name: string) => {
-    router.push(`/product/${id}`);
+    setCurrentProduct({
+      id: props.id,
+      name: props.name,
+      price_in_cents: props.price_in_cents,
+      description: props.description,
+      image_url: props.image_url,
+      category: props.category,
+      sales: props.sales,
+      created_at: props.created_at,
+    });
+    router.push(`/product/${props.id}`);
+    window.scroll(0, 0);
   };
 
   return (
-    <Card onClick={() => handleProductCardClick(name)}>
-      <img src={image} alt={name} />
+    <Card onClick={() => handleProductCardClick(props.name)}>
+      <img src={props.image_url} alt={props.name} />
       <CardLable>
-        <h3>{name}</h3>
-        <p>{formatPrice(price)}</p>
+        <h3>{props.name}</h3>
+        <p>{formatPrice(props.price_in_cents)}</p>
       </CardLable>
     </Card>
   );

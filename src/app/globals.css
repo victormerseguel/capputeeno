@@ -5,11 +5,14 @@
   --bg-secondary: #f3f5f6;
   --text-dark: #737380;
   --text-dark2: #41414d;
+  --text-dark3: #737380;
   --shapes-dark: #09090a;
   --shapes-medium: #e9e9f0;
   --delete-color: #de3838;
   --orange-low: #ffa585;
   --shapes: #dce2e5;
+  --shape-back: #617480;
+  --text-cart: #f5f5fa;
 }
 
 * {

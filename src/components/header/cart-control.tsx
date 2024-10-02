@@ -13,21 +13,22 @@ const CartCount = styled.span`
   background-color: var(--delete-color);
   color: white;
 
-  margin-left: -10px;
-  margin-top: 50%;
+  margin-left: -33px;
+  margin-top: 60%;
 `;
 
 const Container = styled.div`
   display: flex;
+  cursor: pointer;
 `;
 
 export function CartControl() {
-  const { value } = useLocalStorage("cart-items");
+  const value: any = useLocalStorage("cart-items").value;
 
   return (
     <Container>
       <CartIcon />
-      {value && <CartCount>{value.length}</CartCount>}
+      {value ? <CartCount>{value.length}</CartCount> : null}
     </Container>
   );
 }

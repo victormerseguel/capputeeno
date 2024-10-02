@@ -11,6 +11,7 @@ export const filterProductsByType = (
   search: string
 ) => {
   let filteredProducts;
+  let allProducts;
   let filter = "";
 
   // category filter
@@ -73,5 +74,6 @@ export const filterProductsByType = (
     page * 12 + 12
   );
 
-  return { filteredProducts, filteredProductsPage };
+  allProducts = dataProducts.data.allProducts;
+  return { allProducts, filteredProductsPage };
 };

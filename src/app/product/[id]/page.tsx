@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { styled } from "styled-components";
 import { FilterContext } from "../../../context/filter-context";
 import { formatPrice } from "../../../utils/format-price";
@@ -118,46 +118,47 @@ const ProductAddCart = styled.button`
 `;
 
 export default function Page() {
-  const { currentProduct } = useContext(FilterContext);
-  const param = usePathname();
-  if (filter) console.log(filtered);
+  const { currentProduct, setCurrentProduct, allProducts } =
+    useContext(FilterContext);
+  const param = usePathname().replace("/product/", "");
 
-  const filterCurrentProduct = (param: Product) => {
-    // setCurrentProduct([
-    //   {
-    //     id: param.id,
-    //     name: param.name,
-    //     price_in_cents: param.price_in_cents,
-    //     description: param.description,
-    //     image_url: param.image_url,
-    //     category: param.category,
-    //   },
-    // ]);
+  const filterCurrentProduct = (pathname: string) => {
+    if (allProducts) {
+      setCurrentProduct(
+        allProducts.filter((param) => param.id.includes(pathname))[0]
+      );
+    }
   };
+
+  useEffect(() => {
+    filterCurrentProduct(param);
+  }, [currentProduct, param]);
 
   return (
     <ProductWraper>
       <ProductBack />
-      <ProductContent>
-        <ProductLeft>
-          <img src={currentProduct.image_url} alt="" />
-        </ProductLeft>
-        <ProductRight>
-          <p>{categoryConvert(currentProduct.category)}</p>
-          <h4>{currentProduct.name}</h4>
-          <p>{formatPrice(currentProduct.price_in_cents)}</p>
-          <p>
-            *Frete de R$40,00 para todo o Brasil. Grátis para compras acima de
-            R$900,00.
-          </p>
-          <h5>DESCRIÇÃO</h5>
-          <p>{currentProduct.description}</p>
-          <ProductAddCart>
-            <CartIcon />
-            <span>Adicionar ao carrinho</span>
-          </ProductAddCart>
-        </ProductRight>
-      </ProductContent>
+      {currentProduct && (
+        <ProductContent>
+          <ProductLeft>
+            <img src={currentProduct.image_url} alt="" />
+          </ProductLeft>
+          <ProductRight>
+            <p>{categoryConvert(currentProduct.category)}</p>
+            <h4>{currentProduct.name}</h4>
+            <p>{formatPrice(currentProduct.price_in_cents)}</p>
+            <p>
+              *Frete de R$40,00 para todo o Brasil. Grátis para compras acima de
+              R$900,00.
+            </p>
+            <h5>DESCRIÇÃO</h5>
+            <p>{currentProduct.description}</p>
+            <ProductAddCart>
+              <CartIcon />
+              <span>Adicionar ao carrinho</span>
+            </ProductAddCart>
+          </ProductRight>
+        </ProductContent>
+      )}
     </ProductWraper>
   );
 }

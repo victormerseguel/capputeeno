@@ -53,19 +53,10 @@ const CardLable = styled.div`
 
 export function ProductCard(props: Product) {
   const { setCurrentProduct, currentProduct } = useContext(FilterContext);
+
   const router = useRouter();
 
   const handleProductCardClick = (name: string) => {
-    setCurrentProduct({
-      id: props.id,
-      name: props.name,
-      price_in_cents: props.price_in_cents,
-      description: props.description,
-      image_url: props.image_url,
-      category: props.category,
-      sales: props.sales,
-      created_at: props.created_at,
-    });
     router.push(`/product/${props.id}`);
     window.scroll(0, 0);
   };

@@ -40,6 +40,7 @@ export function FilterContextProvider({ children }: ProviderProps) {
     if (data) {
       setFiltered(
         filterProductsByType(data, type, priority, page, setDataLength, search)
+          .filteredProductsPage
       );
     }
   }, [data, page, type, priority, search]);

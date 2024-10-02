@@ -2,36 +2,23 @@
 import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { FilterContext } from "../../../context/filter-context";
-import { BackIcon } from "../../../components/product/back-icon";
 import { formatPrice } from "../../../utils/format-price";
 import { CartIcon } from "../../../components/header/cart-icon";
-import { useRouter, useSearchParams } from "next/navigation";
 import { Product } from "../../../types/products-types";
+import { categoryConvert } from "@/utils/category-types";
+import { ProductBack } from "@/components/product/product-back";
+import { usePathname } from "next/navigation";
 
 const ProductWraper = styled.div`
   width: 100%;
   max-width: 1440px;
-  margin: 0 auto;
+  margin: 0 auto 100px;
   padding: 0 160px;
 
   display: flex;
   flex-direction: column;
 
   color: var(--text-dark2);
-`;
-
-const ProductBack = styled.button`
-  display: inline-flex;
-  width: fit-content;
-  gap: 8px;
-
-  font-family: inherit;
-  font-size: 14px;
-  color: var(--shape-back);
-
-  margin: 25px 0;
-  border: none;
-  cursor: pointer;
 `;
 
 const ProductContent = styled.div`
@@ -131,12 +118,9 @@ const ProductAddCart = styled.button`
 `;
 
 export default function Page() {
-  const { currentProduct, setCurrentProduct } = useContext(FilterContext);
-  const router = useRouter();
-
-  const handleBackButton = () => {
-    router.back();
-  };
+  const { currentProduct } = useContext(FilterContext);
+  const param = usePathname();
+  if (filter) console.log(filtered);
 
   const filterCurrentProduct = (param: Product) => {
     // setCurrentProduct([
@@ -153,16 +137,13 @@ export default function Page() {
 
   return (
     <ProductWraper>
-      <ProductBack onClick={handleBackButton}>
-        <BackIcon />
-        <p>Voltar</p>
-      </ProductBack>
+      <ProductBack />
       <ProductContent>
         <ProductLeft>
           <img src={currentProduct.image_url} alt="" />
         </ProductLeft>
         <ProductRight>
-          <p>{currentProduct.category}</p>
+          <p>{categoryConvert(currentProduct.category)}</p>
           <h4>{currentProduct.name}</h4>
           <p>{formatPrice(currentProduct.price_in_cents)}</p>
           <p>

@@ -68,5 +68,10 @@ export const filterProductsByType = (
       value.description.toLocaleLowerCase().includes(search.toLocaleLowerCase())
   );
 
-  return filteredProducts.slice(page * 12, page * 12 + 12);
+  const filteredProductsPage = filteredProducts.slice(
+    page * 12,
+    page * 12 + 12
+  );
+
+  return { filteredProducts, filteredProductsPage };
 };

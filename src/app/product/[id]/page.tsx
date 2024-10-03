@@ -1,13 +1,15 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { FilterContext } from "../../../context/filter-context";
 import { formatPrice } from "../../../utils/format-price";
 import { CartIcon } from "../../../components/header/cart-icon";
-import { Product } from "../../../types/products-types";
 import { categoryConvert } from "@/utils/category-types";
 import { ProductBack } from "@/components/product/product-back";
 import { usePathname } from "next/navigation";
+import { AddCartStatus } from "@/components/product/add-cart-status";
+import { alert } from "@/utils/alert-cart";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 const ProductWraper = styled.div`
   width: 100%;
@@ -17,6 +19,7 @@ const ProductWraper = styled.div`
 
   display: flex;
   flex-direction: column;
+  position: relative;
 
   color: var(--text-dark2);
 `;
@@ -118,9 +121,11 @@ const ProductAddCart = styled.button`
 `;
 
 export default function Page() {
-  const { currentProduct, setCurrentProduct, allProducts } =
+  const { currentProduct, setCurrentProduct, allProducts, setCart, cart } =
     useContext(FilterContext);
   const param = usePathname().replace("/product/", "");
+  const [status, setStatus] = useState<string | null>(null);
+  const [statusAnimation, setStatusAnimation] = useState("");
 
   const filterCurrentProduct = (pathname: string) => {
     if (allProducts) {
@@ -132,7 +137,21 @@ export default function Page() {
 
   useEffect(() => {
     filterCurrentProduct(param);
-  }, [currentProduct, param]);
+  }, [currentProduct, param, allProducts]);
+
+  const handleAddToCart = () => {
+    if (cart.length === 1 && cart[0].id === "") {
+      setCart([currentProduct]);
+      useLocalStorage("cart-items").updateLocalStorage(cart);
+
+      alert("ok", setStatusAnimation, setStatus);
+    } else if (cart.map((item) => item.id).includes(currentProduct.id)) {
+      alert("already", setStatusAnimation, setStatus);
+    } else {
+      setCart([...cart, currentProduct]);
+      alert("ok", setStatusAnimation, setStatus);
+    }
+  };
 
   return (
     <ProductWraper>
@@ -152,11 +171,14 @@ export default function Page() {
             </p>
             <h5>DESCRIÇÃO</h5>
             <p>{currentProduct.description}</p>
-            <ProductAddCart>
+            <ProductAddCart onClick={handleAddToCart}>
               <CartIcon />
               <span>Adicionar ao carrinho</span>
             </ProductAddCart>
           </ProductRight>
+          {status && (
+            <AddCartStatus animation={statusAnimation} status={status} />
+          )}
         </ProductContent>
       )}
     </ProductWraper>

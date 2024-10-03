@@ -1,6 +1,7 @@
 "use client";
-import { Product } from "@/types/products-types";
-import { formatPrice } from "@/utils/format-price";
+import React from "react";
+import { Product } from "../../types/products-types";
+import { formatPrice } from "../../utils/format-price";
 
 export const CartItem = (item: Product) => {
   return (

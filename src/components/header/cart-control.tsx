@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { CartIcon } from "./cart-icon";
+import { useRouter } from "next/navigation";
 
 const CartCount = styled.span`
   display: flex;
@@ -23,10 +24,11 @@ const Container = styled.div`
 `;
 
 export function CartControl() {
-  const value: any = useLocalStorage("cart-items").value;
+  const value: any = useLocalStorage("cart-items");
+  const router = useRouter();
 
   return (
-    <Container>
+    <Container onClick={() => router.replace("/checkout")}>
       <CartIcon />
       {value ? <CartCount>{value.length}</CartCount> : null}
     </Container>

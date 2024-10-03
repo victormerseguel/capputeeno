@@ -28,3 +28,34 @@ body {
 
   background: #f0f0f5;
 }
+
+@keyframes slidebar {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}
+
+@keyframes slideout {
+  from {
+    transform: initial;
+    opacity: initial;
+  }
+  to {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+}

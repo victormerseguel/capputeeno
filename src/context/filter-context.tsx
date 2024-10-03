@@ -4,7 +4,7 @@ import { PriorityTypes } from "../types/priority-types";
 import { FilterType } from "../types/filter-types";
 import { filterProductsByType } from "@/utils/filter-products";
 import { useProducts } from "@/hooks/useProducts";
-import { Product, ProductEmpty, Products } from "../types/products-types";
+import { Product, ProductEmpty } from "../types/products-types";
 
 export const FilterContext = createContext({
   search: "",

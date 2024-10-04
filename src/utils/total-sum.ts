@@ -6,6 +6,6 @@ export const totalsum = () => {
   const { cart } = useContext(FilterContext);
 
   return formatPrice(
-    cart.map((item) => item.price_in_cents).reduce((acc, cur) => acc + cur)
+    cart.map((item) => item.price_in_cents).reduce((acc, cur) => acc + cur),
   );
 };

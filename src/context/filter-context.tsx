@@ -46,11 +46,11 @@ export function FilterContextProvider({ children }: ProviderProps) {
     if (data) {
       setFiltered(
         filterProductsByType(data, type, priority, page, setDataLength, search)
-          .filteredProductsPage
+          .filteredProductsPage,
       );
       setAllProducts(
         filterProductsByType(data, type, priority, page, setDataLength, search)
-          .allProducts
+          .allProducts,
       );
     }
   }, [data, page, type, priority, search]);

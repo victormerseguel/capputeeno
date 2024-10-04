@@ -28,7 +28,7 @@ const ProductContent = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  align-itens: center;
+  align-items: center;
   justify-content: center;
   gap: 32px;
 `;
@@ -104,7 +104,7 @@ const ProductAddCart = styled.button`
   background-color: #115d8c;
 
   font-family: inherit;
-  font-size: #24px;
+  font-size: 16px;
   text-transform: uppercase;
   color: var(--text-cart);
 
@@ -113,7 +113,6 @@ const ProductAddCart = styled.button`
   cursor: pointer;
 
   svg {
-    margin-top: -2px;
     path {
       stroke: var(--text-cart);
     }
@@ -130,7 +129,7 @@ export default function Page() {
   const filterCurrentProduct = (pathname: string) => {
     if (allProducts) {
       setCurrentProduct(
-        allProducts.filter((param) => param.id.includes(pathname))[0]
+        allProducts.filter((param) => param.id.includes(pathname))[0],
       );
     }
   };

@@ -8,7 +8,7 @@ export const filterProductsByType = (
   priority: PriorityTypes,
   page: number,
   setDataLength: (value: number) => void,
-  search: string
+  search: string,
 ) => {
   let filteredProducts;
   let allProducts;
@@ -25,7 +25,7 @@ export const filterProductsByType = (
 
   if (filter !== "") {
     filteredProducts = dataProducts.data.allProducts.filter(
-      (product) => product.category === filter
+      (product) => product.category === filter,
     );
   } else {
     filteredProducts = dataProducts.data.allProducts;
@@ -66,12 +66,14 @@ export const filterProductsByType = (
   filteredProducts = filteredProducts.filter(
     (value) =>
       value.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-      value.description.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+      value.description
+        .toLocaleLowerCase()
+        .includes(search.toLocaleLowerCase()),
   );
 
   const filteredProductsPage = filteredProducts.slice(
     page * 12,
-    page * 12 + 12
+    page * 12 + 12,
   );
 
   allProducts = dataProducts.data.allProducts;

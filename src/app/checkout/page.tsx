@@ -11,7 +11,7 @@ import Link from "next/link";
 const Wraper = styled.div`
   display: flex;
   max-width: 1440px;
-  margin: 0 auto;
+  margin: 40px auto;
   gap: 32px;
   padding: 0 160px;
 `;
@@ -50,8 +50,74 @@ const CartItems = styled.div`
 
 const Aside = styled.aside`
   width: 350px;
-  padding-right: 160px;
+  padding: 16px 24px;
+
+  background-color: white;
+
+  h3 {
+    width: 350px;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-dark2);
+    margin-bottom: 29px;
+
+  }
+
+  div{
+    display: flex;
+    justify-content: space-between;
+  
+    p{
+      font-size: 16px;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+  }
+  
+  div:nth-of-type(2){
+    border-bottom: 1px solid var(--shapes);
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+  }
+
+  div:nth-of-type(3) {
+    p,span{
+      font-weight: 600;
+    }
+  }
 `;
+
+const Button = styled.button `
+  width:100%;
+  padding: 10px;
+  margin-top: 28px;
+
+  font-family: inherit;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--bg-secondary);
+
+  background-color:var(--others-green);
+  border: none;
+  border-radius:4px;
+cursor:pointer;
+`
+
+
+const Links = styled.div `
+  margin-top: auto !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  
+  a{
+  font-weight: 500;
+    color: var(--text-dark3);
+    text-transform: uppercase;
+  }
+`
 
 export default function Page() {
   const { cart } = useContext(FilterContext);
@@ -110,13 +176,13 @@ export default function Page() {
             )}
           </span>
         </div>
-        <button></button>
-        <div>
+        <Button>Finalizar Compra</Button>
+        <Links>
           <Link href={"#"}>Ajuda</Link>
           <Link href={"#"}>Reembolsos</Link>
           <Link href={"#"}>Entregas e frete</Link>
-          <Link href={"#"}>trocas e devoluções</Link>
-        </div>
+          <Link href={"#"}>Trocas e devoluções</Link>
+        </Links>
       </Aside>
     </Wraper>
   );

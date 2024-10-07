@@ -1,9 +1,3 @@
-export interface Products {
-  data: {
-    allProducts: Array<Product>;
-  };
-}
-
 export type Product = {
   name: string;
   id: string;
@@ -13,6 +7,7 @@ export type Product = {
   category: string;
   sales: number;
   created_at: string;
+  amount?: number | undefined;
 };
 
 export const ProductEmpty = {
@@ -24,4 +19,5 @@ export const ProductEmpty = {
   category: "",
   sales: 0,
   created_at: "",
+  // amount: 1,
 };

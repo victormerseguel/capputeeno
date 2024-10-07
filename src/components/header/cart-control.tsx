@@ -2,6 +2,8 @@ import { styled } from "styled-components";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { CartIcon } from "./cart-icon";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { FilterContext } from "@/context/filter-context";
 
 const CartCount = styled.span`
   display: flex;
@@ -24,13 +26,16 @@ const Container = styled.div`
 `;
 
 export function CartControl() {
+  const { cart } = useContext(FilterContext);
   const value: any = useLocalStorage("cart-items");
   const router = useRouter();
 
   return (
     <Container onClick={() => router.replace("/checkout")}>
       <CartIcon />
-      {value ? <CartCount>{value.length}</CartCount> : null}
+      {value && cart.length !== 0 ? (
+        <CartCount>{cart?.length}</CartCount>
+      ) : null}
     </Container>
   );
 }

@@ -141,13 +141,16 @@ export default function Page() {
   const handleAddToCart = () => {
     if (cart.length === 1 && cart[0].id === "") {
       setCart([currentProduct]);
-      useLocalStorage("cart-items").updateLocalStorage(cart);
-
+      localStorage.setItem("cart-items", JSON.stringify(cart));
       alert("ok", setStatusAnimation, setStatus);
     } else if (cart.map((item) => item.id).includes(currentProduct.id)) {
       alert("already", setStatusAnimation, setStatus);
     } else {
       setCart([...cart, currentProduct]);
+      localStorage.setItem(
+        "cart-items",
+        JSON.stringify([...cart, currentProduct]),
+      );
       alert("ok", setStatusAnimation, setStatus);
     }
   };

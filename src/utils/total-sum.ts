@@ -1,11 +1,16 @@
-import { useContext } from "react";
+// import { useState } from "react";
 import { formatPrice } from "./format-price";
-import { FilterContext } from "@/context/filter-context";
+import { Product } from "@/types/products-types";
 
-export const totalsum = () => {
-  const { cart } = useContext(FilterContext);
+export const totalsum = (items: Product[]) => {
+  // const [sum, setSum] = useState("");
+  // console.log(amount);
 
   return formatPrice(
-    cart.map((item) => item.price_in_cents).reduce((acc, cur) => acc + cur),
+    items
+      .map((item) =>
+        item.amount ? item.price_in_cents * item.amount : item.price_in_cents,
+      )
+      .reduce((acc, cur) => acc + cur),
   );
 };

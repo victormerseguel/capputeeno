@@ -56,16 +56,13 @@ const Checkout = styled.button`
 `;
 
 const StatusBar = styled.div<AddCartStatusProps>`
-    background-color: ${(props) =>
-      props.status === "ok" ? "#48B02C" : "#E9BF2B"};
-    width: 95%;
-    height: 15px;
-    align-self: start;
-    border-radius: 4px ;
-    animation: 5s slidebar;
-  }
-
-  
+  background-color: ${(props) =>
+    props.status === "ok" ? "#48B02C" : "#E9BF2B"};
+  width: 95%;
+  height: 15px;
+  align-self: start;
+  border-radius: 4px;
+  animation: 5s slidebar;
 `;
 
 export const AddCartStatus = ({ animation, status }: AddCartStatusProps) => {

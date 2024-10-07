@@ -107,7 +107,7 @@ cursor:pointer;
 
 
 const Links = styled.div `
-  margin-top: auto !important;
+
   display: flex;
   flex-direction: column;
   gap: 12px;

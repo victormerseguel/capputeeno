@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={saira.className}>
         <FilterContextProvider>
           <Header />
-          {children}
+          <div style={{ marginTop: "80px" }}>{children}</div>
         </FilterContextProvider>
       </body>
     </html>

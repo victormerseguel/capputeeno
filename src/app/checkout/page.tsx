@@ -11,7 +11,7 @@ import Link from "next/link";
 const Wraper = styled.div`
   display: flex;
   max-width: 1440px;
-  margin: 40px auto;
+  margin: 0px auto;
   gap: 32px;
   padding: 0 160px;
 `;
@@ -30,6 +30,10 @@ const WraperCart = styled.div`
     color: var(--text-dark2);
   }
 
+  p:first-of-type {
+    margin: 0;
+  }
+
   p {
     font-size: 16px;
     font-weight: 300;
@@ -46,11 +50,18 @@ const CartItems = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding-bottom: 60px;
 `;
 
 const Aside = styled.aside`
+  position: sticky;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
   width: 350px;
-  padding: 16px 24px;
+  height: calc(100vh - 160px);
+  padding: 16px 24px 24px;
+  margin: 40px 0;
 
   background-color: white;
 
@@ -61,36 +72,36 @@ const Aside = styled.aside`
     text-transform: uppercase;
     color: var(--text-dark2);
     margin-bottom: 29px;
-
   }
 
-  div{
+  div {
     display: flex;
     justify-content: space-between;
-  
-    p{
+
+    p {
       font-size: 16px;
       font-weight: 400;
       margin-top: 0;
       margin-bottom: 12px;
     }
   }
-  
-  div:nth-of-type(2){
+
+  div:nth-of-type(2) {
     border-bottom: 1px solid var(--shapes);
     padding-bottom: 12px;
     margin-bottom: 8px;
   }
 
   div:nth-of-type(3) {
-    p,span{
+    p,
+    span {
       font-weight: 600;
     }
   }
 `;
 
-const Button = styled.button `
-  width:100%;
+const Button = styled.button`
+  width: 100%;
   padding: 10px;
   margin-top: 28px;
 
@@ -99,25 +110,32 @@ const Button = styled.button `
   text-transform: uppercase;
   color: var(--bg-secondary);
 
-  background-color:var(--others-green);
+  background-color: var(--others-green);
   border: none;
-  border-radius:4px;
-cursor:pointer;
-`
+  border-radius: 4px;
+  cursor: pointer;
 
+  &:hover {
+    opacity: 90%;
+  }
+`;
 
-const Links = styled.div `
-
-  display: flex;
+const Links = styled.div`
+  justify-self: flex-end;
   flex-direction: column;
   gap: 12px;
-  
-  a{
-  font-weight: 500;
+  margin-top: auto;
+
+  a {
+    font-weight: 500;
     color: var(--text-dark3);
     text-transform: uppercase;
   }
-`
+
+  :hover {
+    opacity: 80%;
+  }
+`;
 
 export default function Page() {
   const { cart } = useContext(FilterContext);

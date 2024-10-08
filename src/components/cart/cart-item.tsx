@@ -17,6 +17,7 @@ const WraperCartItem = styled.div`
 
   img {
     max-width: 256px;
+    object-fit: cover;
   }
 
   div {

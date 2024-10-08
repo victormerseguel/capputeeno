@@ -13,11 +13,15 @@ const sairaStencil = Saira_Stencil_One({
 interface TagHeaderProps {}
 
 const TagHeader = styled.header`
+  position: fixed;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   background-color: #ffffff;
+  z-index: 3;
+  border-bottom: 0.5px solid var(--bg-primary);
 
   div > div {
     display: flex;

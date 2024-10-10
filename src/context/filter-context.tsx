@@ -24,6 +24,8 @@ export const FilterContext = createContext({
   setCurrentProduct: (value: Product) => {},
   cart: [ProductEmpty],
   setCart: (value: Product[]) => {},
+  windowWidth: false,
+  setWindowWidth: (value: boolean) => {},
 });
 
 interface ProviderProps {
@@ -41,6 +43,7 @@ export function FilterContextProvider({ children }: ProviderProps) {
   const [allProducts, setAllProducts] = useState<Product[]>([ProductEmpty]);
   const [currentProduct, setCurrentProduct] = useState<Product>(ProductEmpty);
   const [cart, setCart] = useState<Product[]>([ProductEmpty]);
+  const [windowWidth, setWindowWidth] = useState(window.screen.width < 768);
 
   useEffect(() => {
     if (data) {
@@ -75,6 +78,8 @@ export function FilterContextProvider({ children }: ProviderProps) {
         setAllProducts,
         cart,
         setCart,
+        windowWidth,
+        setWindowWidth,
       }}
     >
       {children}

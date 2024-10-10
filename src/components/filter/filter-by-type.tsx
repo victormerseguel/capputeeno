@@ -14,6 +14,10 @@ const FilterList = styled.ul`
   justify-content: center;
   gap: 40px;
   list-style: none;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const FilterItem = styled.li<FilterItemProps>`
@@ -29,6 +33,10 @@ const FilterItem = styled.li<FilterItemProps>`
 
   border-bottom: ${(props) =>
     props.selected ? "4px solid var(--orange-low)" : ""};
+
+  @media (max-width: 425px) {
+    font-size: 14px;
+  }
 `;
 
 const FilterByType = () => {

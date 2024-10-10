@@ -24,7 +24,7 @@ const InputContainer = styled.div`
 
   svg {
     position: absolute;
-    right: 20px;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
   }

@@ -12,6 +12,10 @@ const PageWraper = styled.div`
   gap: 2px;
 
   margin-top: 24px;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export function FilterPage() {
